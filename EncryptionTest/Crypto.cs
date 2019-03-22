@@ -11,43 +11,15 @@ class ManagedAesSample
   //  EncryptAesManaged(data);
   //  Console.ReadLine();
   //}
-  private static string EncryptAesManaged(string raw)
-  {
-    string decrypted = "";
-
-    try
-    {
-      // Create Aes that generates a new key and initialization vector (IV).    
-      // Same key must be used in encryption and decryption    
-      using (AesManaged aes = new AesManaged())
-      {
-        // Encrypt string    
-        byte[] encrypted = Encrypt(raw, aes.Key, aes.IV);
-        string enc = Convert.ToBase64String(encrypted);
-        // Print encrypted string    
-        Console.WriteLine($"Encrypted data: {System.Text.Encoding.UTF8.GetString(encrypted)}");
-        // Decrypt the bytes to a string.    
-        byte[] dec = Convert.FromBase64String(enc);
-        decrypted = Decrypt(dec, aes.Key, aes.IV);
-        // Print decrypted string. It should be same as raw data    
-        Console.WriteLine($"Decrypted data: {decrypted}");
-      }
-    }
-    catch (Exception exp)
-    {
-     // Console.WriteLine(exp.Message);
-    }
-    //Console.ReadKey();
-    return decrypted;
-
-  }
+  
   public static string EncryptToString(string plainText, string key)
   {
     string enc = "";
     using (AesManaged aes = new AesManaged())
     {
       // Encrypt string    
-      aes.Key = SHA256.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(key));
+      //aes.Key = SHA256.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(key));
+      aes.Key = System.Text.Encoding.ASCII.GetBytes(key);
       //aes.IV = new byte[16] { 1, 1, 1, 1 , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
       aes.IV = new byte[16];
       // aes.IV = aes.Key.Skip(0).Take(16).ToArray();
@@ -62,15 +34,47 @@ class ManagedAesSample
     string decrypted = "";
     using (AesManaged aes = new AesManaged())
     {
-      aes.Key = SHA256.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(key));
+      aes.GenerateKey();
+      //aes.Key = SHA256.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(key));
+      aes.Mode = CipherMode.ECB;
+      aes.Key = System.Text.Encoding.ASCII.GetBytes(key); // System.Text.Encoding.UTF8.GetBytes(key.Substring(0, aes.Key.Length));
       // aes.IV = new byte[16] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
       aes.IV = new byte[16];
+
+
       // aes.IV = aes.Key.Skip(0).Take(16).ToArray();
       byte[] dec = Convert.FromBase64String(cipherText);
-      decrypted = Decrypt(dec, aes.Key, aes.IV);
 
+      ////
+      ///
+      string keyback = Convert.ToBase64String(aes.Key);
+      byte[] keyBytesback = Convert.FromBase64String(keyback);
+      ////
+
+
+      string plaintext = null;
+
+      // Create a decryptor    
+      var decryptor = aes.CreateDecryptor(keyBytesback, new byte[16]);
+      byte[] decryptedBytes = decryptor.TransformFinalBlock(dec, 0, dec.Length);
+
+      string decstr = System.Text.Encoding.UTF8.GetString(decryptedBytes);
+      return decstr;
     }
-    return decrypted;
+
+    //// Create the streams used for decryption.    
+    //using (MemoryStream ms = new MemoryStream(dec))
+    //  {
+    //    // Create crypto stream    
+    //    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+    //    {
+    //      // Read crypto stream    
+    //      using (StreamReader reader = new StreamReader(cs))
+    //        plaintext = reader.ReadToEnd();
+    //    }
+    //  }
+    //}
+    //return decrypted;
   }
   public static byte[] Encrypt(string plainText, byte[] Key, byte[] IV)
   {

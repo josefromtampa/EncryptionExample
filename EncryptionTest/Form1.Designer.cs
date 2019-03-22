@@ -172,7 +172,7 @@
       this.txtKey.Name = "txtKey";
       this.txtKey.Size = new System.Drawing.Size(1058, 31);
       this.txtKey.TabIndex = 5;
-      this.txtKey.Text = "DEAA954E-39F5-4F44-BD28-08F2987CF3B9";
+      this.txtKey.Text = "DEAA954E39F54F44BD2808F2987CF3B9";
       // 
       // label6
       // 

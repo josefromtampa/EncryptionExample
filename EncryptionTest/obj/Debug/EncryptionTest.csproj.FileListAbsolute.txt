@@ -8,3 +8,13 @@ C:\Users\josef\source\repos\EncryptionTest\EncryptionTest\bin\Debug\EncryptionTe
 C:\Users\josef\source\repos\EncryptionTest\EncryptionTest\bin\Debug\EncryptionTest.pdb
 C:\Users\josef\source\repos\EncryptionTest\EncryptionTest\obj\Debug\EncryptionTest.exe
 C:\Users\josef\source\repos\EncryptionTest\EncryptionTest\obj\Debug\EncryptionTest.pdb
+C:\Users\josef\source\test2\EncryptionTest\bin\Debug\EncryptionTest.exe.config
+C:\Users\josef\source\test2\EncryptionTest\bin\Debug\EncryptionTest.exe
+C:\Users\josef\source\test2\EncryptionTest\bin\Debug\EncryptionTest.pdb
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.csprojAssemblyReference.cache
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.Form1.resources
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.Properties.Resources.resources
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.csproj.GenerateResource.cache
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.csproj.CoreCompileInputs.cache
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.exe
+C:\Users\josef\source\test2\EncryptionTest\obj\Debug\EncryptionTest.pdb
